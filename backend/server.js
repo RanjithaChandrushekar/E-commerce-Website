@@ -21,6 +21,16 @@ app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);     // <-- Use cart routes
 app.use('/api/orders', orderRoutes);
 
+// Serve static assets if in production (Optional for Render if backend and frontend are separate services)
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path');
+  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
+  });
+}
+
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGO_URI)
