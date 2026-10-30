@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://e-commerce-website-scwa.onrender.com/api', // Your live Render backend URL
+  baseURL: 'http://localhost:5000/api', // Your live Render backend URL
 });
 
 // Automatically attach authorization token if it exists in local storage
